@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../vendor/autoload.php');
+require_once(__DIR__ . '/../../vendor/autoload.php');
 
 // configure new Slim app for development
 $app = new \Slim\App([
@@ -13,7 +13,7 @@ $container = $app->getContainer();
 
 // configure Slim\Twig-View as templating engine
 $container['view'] = function ($c) {
-    $view = new \Slim\Views\Twig(__DIR__ . '/../res/views', [
+    $view = new \Slim\Views\Twig(__DIR__ . '/../app/views/', [
         'cache' => false
     ]);
 

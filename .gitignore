@@ -1,2 +1,6 @@
 vendor/
+node_modules/
+src/public/vendor/
+src/public/css/min/
+src/public/js/min/
 composer.lock
