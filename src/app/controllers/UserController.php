@@ -30,4 +30,13 @@ class UserController extends BaseController
 
         return $response;
     }
+
+    public function getUserById(Request $request, Response $response, $args)
+    {
+        $user = $this->table->find($args['id']);
+        
+        $this->container->view->render($response, 'user_getById.twig', [
+            'user' => $user
+        ]);
+    }
 }
