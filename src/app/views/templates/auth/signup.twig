@@ -1,0 +1,31 @@
+{% extends 'templates/base.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Sign Up</h1>
+            <hr />
+            <form action="{{ path_for('auth.signup') }}" method="POST">
+                <div class="form-group">
+                    <label for="signUpUsername">Username</label>
+                    <input type="text" class="form-control" id="signUpUsername" placeholder="Username" name="signUpUsername" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signUpEmail">Email</label>
+                    <input type="email" class="form-control" id="signUpEmail" placeholder="Email" name="signUpEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signUpPassword1">Password</label>
+                    <input type="password" class="form-control" id="signUpPassword1" placeholder="Password" name="signUpPassword1" required>
+                </div>
+                <div class="form-group">
+                    <label for="signUpPassword2">Confirm Password</label>
+                    <input type="password" class="form-control" id="signUpPassword2" placeholder="Confirm Password" name="signUpPassword2" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

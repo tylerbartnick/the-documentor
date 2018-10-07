@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Slim\Views\Twig as View;
 
-class HomeController extends BaseController
+class IndexController extends BaseController
 {
     public function index($request, $response)
     {

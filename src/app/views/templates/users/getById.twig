@@ -1,0 +1,23 @@
+{% extends 'templates/base.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>User Detail</h1>
+            <hr />
+            {% if user %}
+            <ul>
+                <li>
+                    username: {{ user.username }}
+                    <ul>
+                        <li>id: {{ user.id }}</li>
+                        <li>e-mail: {{ user.email }}</li>
+                    </ul>
+                </li>
+            </ul>
+            {% else %}
+            <p>No user exists with the id of {{ givenId | e }}.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
