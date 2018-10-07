@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Users;
+
+use \App\Models\User;
+use \App\Controllers\BaseController;
 
 use Slim\Container;
 use Slim\Views\Twig;
@@ -22,9 +25,9 @@ class UserController extends BaseController
 
     public function getAllUsers(Request $request, Response $response, $args)
     {
-        $users = $this->table->get();
+        $users = User::all();
 
-        $this->container->view->render($response, 'user_getAllUsers.twig', [
+        $this->container->view->render($response, 'templates/users/getAllUsers.twig', [
             'users' => $users
         ]);
 
@@ -33,10 +36,11 @@ class UserController extends BaseController
 
     public function getUserById(Request $request, Response $response, $args)
     {
-        $user = $this->table->find($args['id']);
+        $user = User::where('id', '=', htmlspecialchars($args['id']))->first();
         
-        $this->container->view->render($response, 'user_getById.twig', [
-            'user' => $user
+        $this->container->view->render($response, 'templates/users/getById.twig', [
+            'user' => $user,
+            'givenId' => $args['id']
         ]);
     }
 }

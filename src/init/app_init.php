@@ -29,6 +29,7 @@ $container['db'] = function ($c) {
 
     return $capsule;
 };
+$container->get('db');
 
 // configure Slim\Twig-View as templating engine
 $container['view'] = function ($c) {
@@ -48,13 +49,17 @@ $container['view'] = function ($c) {
 };
 
 // configure app controllers
-$container[App\Controllers\HomeController::class] = function ($c) {
-    return new \App\Controllers\HomeController($c);
+$container[App\Controllers\IndexController::class] = function ($c) {
+    return new \App\Controllers\IndexController($c);
 };
 
-$container[App\Controllers\UserController::class] = function ($c) {
+$container[App\Controllers\Auth\AuthController::class] = function ($c) {
+    return new \App\Controllers\Auth\AuthController($c);
+};
+
+$container[App\Controllers\Users\UserController::class] = function ($c) {
     $table = $c->get('db')->table('users');
-    return new \App\Controllers\UserController($c, $table);
+    return new \App\Controllers\Users\UserController($c, $table);
 };
 
 
