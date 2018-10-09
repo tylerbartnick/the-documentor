@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once(__DIR__ . '/../../vendor/autoload.php');
 
 // configure new Slim app for development
@@ -62,6 +64,16 @@ $container[App\Controllers\Users\UserController::class] = function ($c) {
     return new \App\Controllers\Users\UserController($c, $table);
 };
 
+// configure middleware
+$container['csrf'] = function ($c) {
+    return new \Slim\Csrf\Guard;
+};
+
+
+$app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
+$app->add(new \App\Middleware\FormDataMiddleware($container));
+$app->add(new \App\Middleware\CsrfViewMiddleware($container));
+$app->add($container->csrf);
 
 // load routes
 require_once(__DIR__ . '/../app/routes/routes.php');
