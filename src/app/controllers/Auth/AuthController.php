@@ -108,6 +108,11 @@ class AuthController extends BaseController
             ])
         ]);
 
+        $authenticated = $this->container->auth->authenticate(
+            $request->getParam('email'), 
+            $request->getParam('password1')
+        );
+
         return $response->withRedirect($this->container->router->pathFor('index'));
     }
 
@@ -118,6 +123,22 @@ class AuthController extends BaseController
 
     public function postLogin(Request $request, Response $response, $args)
     {
-        //return $this->container->view->render($response, 'templates/auth/login.twig');
+        $authenticated = $this->container->auth->authenticate(
+            $request->getParam('email'), 
+            $request->getParam('password')
+        );
+
+        if (!$authenticated) {
+            return $response->withRedirect($this->container->router->pathFor('auth.login'));
+        }
+
+        return $response->withRedirect($this->container->router->pathFor('index'));
+    }
+
+    public function getLogout(Request $request, Response $response, $args)
+    {
+        $this->container->auth->logout();
+
+        return $response->withRedirect($this->container->router->pathFor('index'));
     }
 }

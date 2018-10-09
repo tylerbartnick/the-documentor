@@ -33,6 +33,14 @@ $container['db'] = function ($c) {
 };
 $container->get('db');
 
+$container['auth'] = function ($c) {
+    return new \App\Helpers\Auth\AuthenticationHelper;
+};
+
+$container['flash'] = function($c) {
+    return new \Slim\Flash\Messages();
+};
+
 // configure Slim\Twig-View as templating engine
 $container['view'] = function ($c) {
     $view = new \Slim\Views\Twig(__DIR__ . '/../app/views/', [
@@ -46,6 +54,13 @@ $container['view'] = function ($c) {
     ));
 
     $view->addExtension(new \Twig_Extension_Debug());
+
+    $view->getEnvironment()->addGlobal('auth', [
+        'isLoggedIn' => $c->auth->isLoggedIn(),
+        'currentUser' => $c->auth->getCurrentUser()
+    ]);
+
+    $view->getEnvironment()->addGlobal('flash', $c->flash);
 
     return $view;
 };
@@ -68,7 +83,6 @@ $container[App\Controllers\Users\UserController::class] = function ($c) {
 $container['csrf'] = function ($c) {
     return new \Slim\Csrf\Guard;
 };
-
 
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\FormDataMiddleware($container));
