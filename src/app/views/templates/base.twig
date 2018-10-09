@@ -15,6 +15,7 @@
 <body>
     {% include 'templates/partials/navigation.twig' %}
     <div class="container">
+        {% include 'templates/partials/flashMessage.twig' %}
         {% block content %}{% endblock %}
     </div>
 
