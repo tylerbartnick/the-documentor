@@ -34,13 +34,13 @@ class UserController extends BaseController
         return $response;
     }
 
-    public function getUserById(Request $request, Response $response, $args)
+    public function getUserByUsername(Request $request, Response $response, $args)
     {
-        $user = User::where('id', '=', htmlspecialchars($args['id']))->first();
+        $user = User::where('username', '=', $args['username'])->first();
         
-        $this->container->view->render($response, 'templates/users/getById.twig', [
+        $this->container->view->render($response, 'templates/users/getByUsername.twig', [
             'user' => $user,
-            'givenId' => $args['id']
+            'givenUsername' => $args['username']
         ]);
     }
 }
