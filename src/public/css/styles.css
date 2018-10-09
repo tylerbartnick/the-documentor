@@ -1,1 +1,23 @@
 /* styles here */
+
+@media all and (min-width: 768px) {
+    .signup-form-panel {
+        max-width: 50%;
+    }
+
+    .login-form-panel {
+        max-width: 50%;
+    }
+}
+
+
+.navbar-brand {
+    padding: 0;
+    position: relative;
+    right: 40px;
+    bottom: 16px;
+}
+
+.navbar-brand img {
+    transform: scale(0.45);
+}

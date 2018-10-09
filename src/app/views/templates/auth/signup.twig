@@ -1,0 +1,44 @@
+{% extends 'templates/base.twig' %} {% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Sign Up</h1>
+        <hr/>
+        
+        <div class="panel panel-default signup-form-panel center-block">
+            <div class="panel-body">
+                {% if errors %}
+                <ul class="form-errors">
+                    {% for error in errors %}
+                    <li class="text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="{{ path_for('auth.signup') }}" method="POST">
+
+                    <div class="form-group {% if formErrors['username'] %} has-error {% endif %}">
+                        <label class="control-label" for="username">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Username" name="username" value="{{ prevData.username }}" required="required">
+                    </div>
+
+                    <div class="form-group {% if formErrors['email'] %} has-error {% endif %}">
+                        <label class="control-label" for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="{{ prevData.email }}" required="required">
+                    </div>
+                    <div class="form-group {% if formErrors['passwords'] %} has-error {% endif %}">
+                        <label class="control-label" for="password1">Password</label>
+                        <input type="password" class="form-control" id="password1" placeholder="Password" name="password1" required="required">
+                    </div>
+                    <div class="form-group {% if formErrors['passwords'] %} has-error {% endif %}">
+                        <label class="control-label" for="password2">Confirm Password</label>
+                        <input type="password" class="form-control" id="password2" placeholder="Confirm Password" name="password2" required="required">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                    {{ csrf.fields | raw }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,3 +1,5 @@
+.idea/
+the-documentor.iml
 vendor/
 node_modules/
 src/public/vendor/

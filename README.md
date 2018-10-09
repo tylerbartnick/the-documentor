@@ -8,4 +8,4 @@ An open-source, user-created documentation repository for anything relating to c
 - `composer start`
 
 ### Reload Composer's PS4-Compliant Autoloader
-- `composer clean`
+- `composer reload`
