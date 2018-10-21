@@ -11,7 +11,7 @@ class ForceAuthenticatedUserMiddleware extends BaseMiddleware
     {
         if (!$this->container->auth->isLoggedIn()) {
             $this->container->flash->addMessage('error', 'You must be logged in to do that.');
-            return $response->withRedirect($this->container->router->pathFor('auth.login'));
+            return $response->withRedirect($this->container->router->pathFor('auth.login') . "?next=/{$request->getUri()->getPath()}");
         }
 
         $response = $next($request, $response);

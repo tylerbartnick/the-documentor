@@ -26,6 +26,9 @@
 
                     <button type="submit" class="btn btn-primary">Submit</button>
 
+                    {% if next %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                    {% endif %}
                     {{ csrf.fields | raw }}
                 </form>
             </div>
