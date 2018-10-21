@@ -3,12 +3,13 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h2>Create Guide</h2>
+            <h2>Create/Edit Guide</h2>
             <hr />
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
+        {{ dump(prevData) }}
             <form action="{{ path_for('guides.postCreateGuide') }}" method="POST">
                 <div class="form-group {% if formErrors['title'] %} has-error {% endif %}">
                     <label class="control-label" for="title">Title</label>
@@ -22,7 +23,7 @@
 
                 <div class="form-group {% if formErrors['content'] %} has-error {% endif %}">
                     <label class="control-label" for="content">Content</label>
-                    <textarea class="form-control" id="content" placeholder="Content" name="content" value="{{ prevData.content }}" required="required"></textarea>
+                    <textarea class="form-control" id="content" placeholder="Content" name="content" required="required">{{ prevData.content }}</textarea>
                 </div>
 
                 <div class="checkbox">
@@ -33,6 +34,7 @@
 
                 <button type="submit" class="btn btn-primary">Submit</button>
 
+                
                 {{ csrf.fields | raw }}
             </form>
         </div>

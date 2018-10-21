@@ -28,7 +28,7 @@ class GuideController extends BaseController
 
     public function getCreateGuide(Request $request, Response $response)
     {
-        return $this->container->view->render($response, 'templates/guides/createGuide.twig');
+        return $this->container->view->render($response, 'templates/guides/createEditGuide.twig');
     }
 
     public function postCreateGuide(Request $request, Response $response)
@@ -50,5 +50,22 @@ class GuideController extends BaseController
         ]);
 
         return $response->withRedirect($this->container->router->pathFor('guides.getAllGuides'));
+    }
+
+    public function getEditGuide(Request $request, Response $response, array $args)
+    {
+        $guide = Guide::where('id', '=', $args['id'])->first();
+        $_SESSION['prevData'] = [
+            'id' => $guide->id,
+            'title' => $guide->title,
+            'tags' => $guide->tags,
+            'content' => $guide->content
+        ];
+        
+        return $this->container->view->render($response, 'templates/guides/createEditGuide.twig');
+    }
+
+    public function postEditGuide(Request $request, Response $response)
+    {
     }
 }

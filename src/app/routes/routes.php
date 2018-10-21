@@ -23,4 +23,6 @@ $app->group('', function () use ($app) {
 
     $app->get('/guides/create[/]', \App\Controllers\Guides\GuideController::class . ':getCreateGuide')->setName('guides.getCreateGuide');
     $app->post('/guides/create[/]', \App\Controllers\Guides\GuideController::class . ':postCreateGuide')->setName('guides.postCreateGuide');
+
+    $app->get('/guides/edit/{id:[0-9]+}[/]', \App\Controllers\Guides\GuideController::class . ':getEditGuide')->setName('guides.getEditGuide');
 })->add(new \App\Middleware\ForceAuthenticatedUserMiddleware($container));
