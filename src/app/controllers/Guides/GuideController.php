@@ -74,15 +74,9 @@ class GuideController extends BaseController
             return $response->withRedirect($this->container->router->pathFor('guides.getAllAvailableGuides'));
         }
         
-        $_SESSION['prevData'] = [
-            'id'            => $guide->id,
-            'title'         => $guide->title,
-            'tags'          => $guide->tags,
-            'content'       => $guide->content,
-            'isPublished'   => $guide->isPublished
-        ];
-        
-        return $this->container->view->render($response, 'templates/guides/editGuide.twig');
+        return $this->container->view->render($response, 'templates/guides/editGuide.twig', [
+            'guide' => $guide
+        ]);
     }
 
     public function postEditGuide(Request $request, Response $response)
@@ -92,7 +86,6 @@ class GuideController extends BaseController
         $guide = Guide::where('id', '=', $params['id'])->first();
         
         if (!$guide) {
-            $_SESSION['prevData'] = $params;
             return $response->withRedirect($this->container->router->urlFor("guides.getEditGuide", [
                 'id' => $params['id']
             ]));
