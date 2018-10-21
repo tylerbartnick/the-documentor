@@ -34,7 +34,7 @@
 
                 <button type="submit" class="btn btn-primary">Submit</button>
 
-                
+                {% if prevData['id'] %}<input type="hidden" name="id" value="{{ prevData.id }}">{% endif %}
                 {{ csrf.fields | raw }}
             </form>
         </div>

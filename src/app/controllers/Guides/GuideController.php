@@ -55,6 +55,11 @@ class GuideController extends BaseController
     public function getEditGuide(Request $request, Response $response, array $args)
     {
         $guide = Guide::where('id', '=', $args['id'])->first();
+
+        if (!$guide) {
+            $this->container->flash->addMessage('error', 'No guide exists with that id.');
+            return $response->withRedirect($this->container->router->pathFor('guides.getAllGuides'));
+        }
         $_SESSION['prevData'] = [
             'id' => $guide->id,
             'title' => $guide->title,
