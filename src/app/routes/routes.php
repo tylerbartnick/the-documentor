@@ -3,7 +3,8 @@
 // index
 $app->get('/', \App\Controllers\IndexController::class . ':index')->setName('index');
 
-$app->get('/guides[/]', \App\Controllers\Guides\GuideController::class . ':getAllGuides')->setName('guides.getAllGuides');
+$app->get('/guides[/]', \App\Controllers\Guides\GuideController::class . ':getAllAvailableGuides')->setName('guides.getAllAvailableGuides');
+$app->get('/guides/view/{id:[0-9]+}[/]', \App\Controllers\Guides\GuideController::class . ':viewGuide')->setName('guides.viewGuide');
 
 // protected - requesting user must NOT be authenticated to access
 // redirect to index page otherwise
@@ -19,8 +20,11 @@ $app->group('', function () use ($app) {
 $app->group('', function () use ($app) {
     $app->get('/auth/logout[/]', \App\Controllers\Auth\AuthController::class . ':getLogout')->setName('auth.logout');
     $app->get('/users[/]', \App\Controllers\Users\UserController::class . ':getAllUsers')->setName('users.getAll');
-    $app->get('/users/{username:[a-zA-Z0-9]+}', \App\Controllers\Users\UserController::class . ':getUserByUsername')->setName('users.getUserByUsername');
+    $app->get('/users/{username:[a-zA-Z0-9]+}[/]', \App\Controllers\Users\UserController::class . ':getUserByUsername')->setName('users.getUserByUsername');
 
     $app->get('/guides/create[/]', \App\Controllers\Guides\GuideController::class . ':getCreateGuide')->setName('guides.getCreateGuide');
     $app->post('/guides/create[/]', \App\Controllers\Guides\GuideController::class . ':postCreateGuide')->setName('guides.postCreateGuide');
+
+    $app->get('/guides/edit/{id:[0-9]+}[/]', \App\Controllers\Guides\GuideController::class . ':getEditGuide')->setName('guides.getEditGuide');
+    $app->post('/guides/edit[/]', \App\Controllers\Guides\GuideController::class . ':postEditGuide')->setName('guides.postEditGuide');
 })->add(new \App\Middleware\ForceAuthenticatedUserMiddleware($container));

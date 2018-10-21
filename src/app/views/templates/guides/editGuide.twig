@@ -3,13 +3,13 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h2>Create Guide</h2>
+            <h2>Edit Guide</h2>
             <hr />
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form action="{{ path_for('guides.postCreateGuide') }}" method="POST">
+            <form action="{{ path_for('guides.postEditGuide') }}" method="POST">
                 <div class="form-group {% if formErrors['title'] %} has-error {% endif %}">
                     <label class="control-label" for="title">Title</label>
                     <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="{{ prevData.title }}" required="required">
