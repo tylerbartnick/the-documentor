@@ -11,8 +11,8 @@ $app = new \Slim\App([
         'db' => [
             'driver'        => 'mysql',
             'host'          => 'localhost',
-            'database'      => 'test_db',
-            'username'      => 'db_tester',
+            'database'      => 'documentor',
+            'username'      => 'doc_webadmin',
             'password'      => 'TesT1234!',
             'charset'       => 'utf8',
             'collation'     => 'utf8_unicode_ci',
@@ -37,7 +37,7 @@ $container['auth'] = function ($c) {
     return new \App\Helpers\Auth\AuthenticationHelper;
 };
 
-$container['flash'] = function($c) {
+$container['flash'] = function ($c) {
     return new \Slim\Flash\Messages();
 };
 
@@ -77,6 +77,10 @@ $container[App\Controllers\Auth\AuthController::class] = function ($c) {
 $container[App\Controllers\Users\UserController::class] = function ($c) {
     $table = $c->get('db')->table('users');
     return new \App\Controllers\Users\UserController($c, $table);
+};
+
+$container[App\Controllers\Guides\GuideController::class] = function ($c) {
+    return new \App\Controllers\Guides\GuideController($c);
 };
 
 // configure middleware

@@ -1,0 +1,15 @@
+{% extends 'templates/base.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ guide.title }}</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ guide.content | raw }}
+        </div>
+    </div>
+{% endblock %}
