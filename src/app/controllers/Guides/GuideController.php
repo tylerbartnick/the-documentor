@@ -56,6 +56,7 @@ class GuideController extends BaseController
             'user_id'       => $_SESSION['USER_ID']
         ]);
 
+        $this->container->flash->addMessage('success', 'Guide added successfully.');
         return $response->withRedirect($this->container->router->pathFor('guides.getAllAvailableGuides'));
     }
 
@@ -103,6 +104,7 @@ class GuideController extends BaseController
         $guide->isPublished = (isset($params['isPublished'])) ? 1 : 0;
         $guide->save();
 
+        $this->container->flash->addMessage('success', 'Guide saved successfully.');
         return $response->withRedirect($this->container->router->urlFor("guides.viewGuide", [
             'id' => $params['id']
         ]));
