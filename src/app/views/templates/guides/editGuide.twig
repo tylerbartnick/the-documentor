@@ -3,14 +3,13 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h2>Create/Edit Guide</h2>
+            <h2>Edit Guide</h2>
             <hr />
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-        {{ dump(prevData) }}
-            <form action="{{ path_for('guides.postCreateGuide') }}" method="POST">
+            <form action="{{ path_for('guides.postEditGuide') }}" method="POST">
                 <div class="form-group {% if formErrors['title'] %} has-error {% endif %}">
                     <label class="control-label" for="title">Title</label>
                     <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="{{ prevData.title }}" required="required">
@@ -18,7 +17,7 @@
 
                 <div class="form-group {% if formErrors['tags'] %} has-error {% endif %}">
                     <label class="control-label" for="tags">Tags (separate with commas)</label>
-                    <input type="text" class="form-control" id="tags" placeholder="Tags" name="tags" value="{{ prevData.tags }}" required="required">
+                    <input type="text" class="form-control" id="tags" placeholder="Tags" name="tags" value="{{ prevData.tags }}">
                 </div>
 
                 <div class="form-group {% if formErrors['content'] %} has-error {% endif %}">
@@ -28,7 +27,7 @@
 
                 <div class="checkbox">
                     <label for="isPublished">
-                        <input type="checkbox" name="isPublished" id="isPublished" value="true"> Publish?
+                        <input type="checkbox" name="isPublished" id="isPublished" value="1" {% if prevData['isPublished'] is same as (1) %} checked {% endif %}> Publish?
                     </label>
                 </div>
 

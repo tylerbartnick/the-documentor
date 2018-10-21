@@ -3,17 +3,13 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h2>Guides</h2>
+            <h2>{{ guide.title }}</h2>
             <hr />
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <ul>
-                {% for guide in guides %}
-                    <li>{{ guide.title }}</li>
-                {% endfor %}
-            </ul>
+            {{ guide.content | raw }}
         </div>
     </div>
 {% endblock %}
