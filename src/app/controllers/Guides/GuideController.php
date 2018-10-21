@@ -4,6 +4,7 @@ namespace App\Controllers\Guides;
 
 use App\Models\Guide;
 use App\Controllers\BaseController;
+use App\Helpers\Guides\GuideHelper;
 
 use Slim\Container;
 use Slim\Views\Twig;
@@ -47,11 +48,12 @@ class GuideController extends BaseController
     public function postCreateGuide(Request $request, Response $response)
     {
         $params = $request->getParams();
+        $sanitizedContent = GuideHelper::sanitizeContent($params['content']);
 
         $guide = Guide::create([
             'title'         => $params['title'],
             'tags'          => $params['tags'],
-            'content'       => $params['content'],
+            'content'       => $sanitizedContent,
             'isPublished'   => (isset($params['isPublished'])) ? 1 : 0,
             'user_id'       => $_SESSION['USER_ID']
         ]);
@@ -91,9 +93,11 @@ class GuideController extends BaseController
             ]));
         }
 
+        $sanitizedContent = GuideHelper::sanitizeContent($params['content']);
+
         $guide->title = $params['title'];
         $guide->tags = $params['tags'];
-        $guide->content = $params['content'];
+        $guide->content = $sanitizedContent;
         $guide->isPublished = (isset($params['isPublished'])) ? 1 : 0;
         $guide->save();
 
