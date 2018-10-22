@@ -13,7 +13,11 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            <form action="{{ path_for('guides.postEditGuide') }}" method="POST">
+            {% if type is same as ('create') %}
+                <form action="{{ path_for('guides.postCreateGuide') }}" method="POST">
+            {% else %}
+                <form action="{{ path_for('guides.postEditGuide') }}" method="POST">
+            {% endif %}
                 <div class="form-group {% if formErrors['title'] %} has-error {% endif %}">
                     <label class="control-label" for="title">Title</label>
                     <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="{{ guide.title }}" required="required">
