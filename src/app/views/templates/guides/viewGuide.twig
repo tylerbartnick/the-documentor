@@ -9,7 +9,12 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            {{ guide.content | raw }}
+            <div class="markdown-preview" id="markdown-content">{{ guide.content }}</div>
         </div>
     </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ base_url() }}/vendor/showdown/showdown.min.js" type="text/javascript"></script>
+<script src="{{ base_url() }}/js/min/markdown-parser-view.min.js"></script>
 {% endblock %}
