@@ -1,30 +1,32 @@
 {
-    "name": "the-documentor",
-    "version": "1.0.0",
-    "description": "An open-source, online documentation repository for anything relating to computing.",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "gulp": "gulp"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/tylerbartnick/the-documentor.git"
-    },
-    "author": "Tyler Bartnick",
-    "license": "GPL-2.0",
-    "bugs": {
-        "url": "https://github.com/tylerbartnick/the-documentor/issues"
-    },
-    "homepage": "https://github.com/tylerbartnick/the-documentor#readme",
-    "dependencies": {
-        "bootstrap": "^3.3.7",
-        "jquery": "^3.3.1",
-        "font-awesome": "^4.7.0"
-    },
-    "devDependencies": {
-        "gulp": "^3.9.1",
-        "gulp-clean-css": "^3.9.2",
-        "gulp-rename": "^1.2.2",
-        "gulp-uglify": "^3.0.0"
-    }
+  "name": "the-documentor",
+  "version": "1.0.0",
+  "description": "An open-source, online documentation repository for anything relating to computing.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylerbartnick/the-documentor.git"
+  },
+  "author": "Tyler Bartnick",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/tylerbartnick/the-documentor/issues"
+  },
+  "homepage": "https://github.com/tylerbartnick/the-documentor#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "showdown": "^1.8.7"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "semistandard": "^12.0.1"
+  }
 }
