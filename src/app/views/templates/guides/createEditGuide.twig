@@ -3,12 +3,16 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h2>Edit Guide</h2>
+            {% if type is same as ('create') %}
+                <h2>Create Guide</h2>
+            {% else %}
+                <h2>Edit Guide</h2>
+            {% endif %}
             <hr />
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-5">
             <form action="{{ path_for('guides.postEditGuide') }}" method="POST">
                 <div class="form-group {% if formErrors['title'] %} has-error {% endif %}">
                     <label class="control-label" for="title">Title</label>
@@ -22,7 +26,7 @@
 
                 <div class="form-group {% if formErrors['content'] %} has-error {% endif %}">
                     <label class="control-label" for="content">Content</label>
-                    <textarea class="form-control" id="content" placeholder="Content" name="content" required="required">{{ guide.content }}</textarea>
+                    <textarea class="form-control" id="content" placeholder="Content" name="content" required="required" rows="25">{{ guide.content }}</textarea>
                 </div>
 
                 <div class="checkbox">
@@ -37,5 +41,16 @@
                 {{ csrf.fields | raw }}
             </form>
         </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <h3>Preview</h3>
+            <hr />
+            <div class="markdown-preview" id="markdown-preview-dest"></div>
+        </div>
     </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ base_url() }}/vendor/showdown/showdown.min.js" type="text/javascript"></script>
+<script src="{{ base_url() }}/js/min/markdown-parser-create-edit.min.js" type="text/javascript"></script>
 {% endblock %}

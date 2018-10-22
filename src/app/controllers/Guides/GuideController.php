@@ -42,7 +42,9 @@ class GuideController extends BaseController
 
     public function getCreateGuide(Request $request, Response $response)
     {
-        return $this->container->view->render($response, 'templates/guides/createGuide.twig');
+        return $this->container->view->render($response, 'templates/guides/createEditGuide.twig', [
+            'type' => 'create'
+        ]);
     }
 
     public function postCreateGuide(Request $request, Response $response)
@@ -76,7 +78,8 @@ class GuideController extends BaseController
             return $response->withRedirect($this->container->router->pathFor('guides.getAllAvailableGuides'));
         }
         
-        return $this->container->view->render($response, 'templates/guides/editGuide.twig', [
+        return $this->container->view->render($response, 'templates/guides/createEditGuide.twig', [
+            'type' => 'edit',
             'guide' => $guide
         ]);
     }
